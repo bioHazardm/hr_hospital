@@ -10,8 +10,8 @@ class Doctor(models.Model):
     email = fields.Char(string='Email')
     active = fields.Boolean(default=True)
     
-    patient_ids = fields.One2many('hr_hospital.patient', 'doctor_id', string='Patients')
-    visit_ids = fields.One2many('hr_hospital.visit', 'doctor_id', string='Visits')
+    patient_ids = fields.One2many(comodel_name='hr_hospital.patient', inverse_name='doctor_id', string='Patients')
+    visit_ids = fields.One2many(comodel_name='hr_hospital.visit', inverse_name='doctor_id', string='Visits')
     
     _sql_constraints = [
         ('email_uniq', 'unique(email)', 'Email must be unique!'),

@@ -10,7 +10,7 @@ class Disease(models.Model):
     treatment = fields.Text(string='Treatment')
     active = fields.Boolean(default=True)
     
-    visit_ids = fields.One2many('hr_hospital.visit', 'disease_id', string='Visits')
+    visit_ids = fields.One2many(comodel_name='hr_hospital.visit', inverse_name='disease_id', string='Visits')
     
     _sql_constraints = [
         ('name_uniq', 'unique(name)', 'Disease name must be unique!'),

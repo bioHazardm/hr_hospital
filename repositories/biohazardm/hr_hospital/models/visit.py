@@ -8,13 +8,13 @@ class Visit(models.Model):
 
     name = fields.Char(string='Reference', required=True, copy=False, readonly=True, 
                        default=lambda self: _('New'))
-    patient_id = fields.Many2one('hr_hospital.patient', string='Patient', required=True)
-    doctor_id = fields.Many2one('hr_hospital.doctor', string='Doctor', required=True)
-    disease_id = fields.Many2one('hr_hospital.disease', string='Disease')
+    patient_id = fields.Many2one(comodel_name='hr_hospital.patient', string='Patient', required=True)
+    doctor_id = fields.Many2one(comodel_name='hr_hospital.doctor', string='Doctor', required=True)
+    disease_id = fields.Many2one(comodel_name='hr_hospital.disease', string='Disease')
     date = fields.Datetime(string='Visit Date', default=fields.Datetime.now)
     description = fields.Text(string='Description')
     prescription = fields.Text(string='Prescription')
-    state = fields.Selection([
+    state = fields.Selection(selection=[
         ('draft', 'Draft'),
         ('confirmed', 'Confirmed'),
         ('done', 'Done'),

@@ -6,7 +6,8 @@ class Patient(models.Model):
 
     name = fields.Char(string='Name', required=True)
     date_of_birth = fields.Date(string='Date of Birth')
-    gender = fields.Selection([
+    gender = fields.Selection(
+        selection_add=[
         ('male', 'Male'),
         ('female', 'Female'),
         ('other', 'Other')
@@ -16,8 +17,8 @@ class Patient(models.Model):
     address = fields.Text(string='Address')
     active = fields.Boolean(default=True)
     
-    doctor_id = fields.Many2one('hr_hospital.doctor', string='Doctor')
-    visit_ids = fields.One2many('hr_hospital.visit', 'patient_id', string='Visits')
+    doctor_id = fields.Many2one(comodel_name='hr_hospital.doctor', string='Doctor')
+    visit_ids = fields.One2many(comodel_name='hr_hospital.visit', inverse_name='patient_id', string='Visits')
     
     _sql_constraints = [
         ('email_uniq', 'unique(email)', 'Email must be unique!'),

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="disease_common_cold" model="hr_hospital.disease">
+            <field name="name">Common Cold</field>
+            <field name="description">A viral infectious disease of the upper respiratory tract that primarily affects the nose.</field>
+            <field name="symptoms">Runny nose, sneezing, sore throat, cough, congestion, slight body aches, mild headache, low-grade fever.</field>
+            <field name="treatment">Rest, hydration, over-the-counter medications for symptom relief.</field>
+        </record>
+
+        <record id="disease_influenza" model="hr_hospital.disease">
+            <field name="name">Influenza</field>
+            <field name="description">A viral infection that attacks your respiratory system — your nose, throat and lungs.</field>
+            <field name="symptoms">Fever, chills, muscle aches, cough, congestion, runny nose, headaches, fatigue.</field>
+            <field name="treatment">Rest, hydration, antiviral medications if prescribed, pain relievers for symptoms.</field>
+        </record>
+
+        <record id="disease_hypertension" model="hr_hospital.disease">
+            <field name="name">Hypertension</field>
+            <field name="description">A common condition in which the long-term force of the blood against your artery walls is high enough that it may eventually cause health problems.</field>
+            <field name="symptoms">Often asymptomatic, but may include headaches, shortness of breath, nosebleeds.</field>
+            <field name="treatment">Lifestyle changes, medication, regular monitoring.</field>
+        </record>
+    </data>
+</odoo>

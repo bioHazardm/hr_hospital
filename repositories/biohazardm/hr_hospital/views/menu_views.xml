@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_hr_hospital_root"
+              name="Hospital"
+              sequence="10"
+              web_icon="hr_hospital,static/description/icon.png"/>
+
+    <menuitem id="menu_hr_hospital_doctors"
+              name="Doctors"
+              parent="menu_hr_hospital_root"
+              action="action_hr_hospital_doctor"
+              sequence="10"/>
+
+    <menuitem id="menu_hr_hospital_patients"
+              name="Patients"
+              parent="menu_hr_hospital_root"
+              action="action_hr_hospital_patient"
+              sequence="20"/>
+
+    <menuitem id="menu_hr_hospital_configuration"
+              name="Configuration"
+              parent="menu_hr_hospital_root"
+              sequence="100"/>
+
+    <menuitem id="menu_hr_hospital_diseases"
+              name="Diseases"
+              parent="menu_hr_hospital_configuration"
+              action="action_hr_hospital_disease"
+              sequence="10"/>
+
+    <menuitem id="menu_hr_hospital_visits"
+              name="Visits"
+              parent="menu_hr_hospital_root"
+              action="action_hr_hospital_visit"
+              sequence="30"/>
+</odoo>

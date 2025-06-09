@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_hospital_doctor_tree" model="ir.ui.view">
+        <field name="name">hr_hospital.doctor.tree</field>
+        <field name="model">hr_hospital.doctor</field>
+        <field name="arch" type="xml">
+            <tree string="Doctors">
+                <field name="name"/>
+                <field name="specialization"/>
+                <field name="phone"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_hospital_doctor_form" model="ir.ui.view">
+        <field name="name">hr_hospital.doctor.form</field>
+        <field name="model">hr_hospital.doctor</field>
+        <field name="arch" type="xml">
+            <form string="Doctor">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="specialization"/>
+                        </group>
+                        <group>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Patients">
+                            <field name="patient_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="date_of_birth"/>
+                                    <field name="gender"/>
+                                    <field name="phone"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Visits">
+                            <field name="visit_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="patient_id"/>
+                                    <field name="date"/>
+                                    <field name="disease_id"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_hospital_doctor" model="ir.actions.act_window">
+        <field name="name">Doctors</field>
+        <field name="res_model">hr_hospital.doctor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first doctor!
+            </p>
+        </field>
+    </record>
+</odoo>

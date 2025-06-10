@@ -7,7 +7,7 @@ class Patient(models.Model):
     name = fields.Char(string='Name', required=True)
     date_of_birth = fields.Date(string='Date of Birth')
     gender = fields.Selection(
-        selection_add=[
+        selection=[
         ('male', 'Male'),
         ('female', 'Female'),
         ('other', 'Other')

@@ -3,7 +3,7 @@
     <data noupdate="1">
         <record id="patient_alice_williams" model="hr_hospital.patient">
             <field name="name">Alice Williams</field>
-            <field name="date_of_birth">1985-03-15</field>
+            <field name="birthday">1985-03-15</field>
             <field name="gender">female</field>
             <field name="phone">+1 555-987-6543</field>
             <field name="email">alice.williams@example.com</field>
@@ -13,7 +13,7 @@
 
         <record id="patient_bob_johnson" model="hr_hospital.patient">
             <field name="name">Bob Johnson</field>
-            <field name="date_of_birth">1978-07-22</field>
+            <field name="birthday">1978-07-22</field>
             <field name="gender">male</field>
             <field name="phone">+1 555-876-5432</field>
             <field name="email">bob.johnson@example.com</field>
@@ -23,7 +23,7 @@
 
         <record id="patient_carol_davis" model="hr_hospital.patient">
             <field name="name">Carol Davis</field>
-            <field name="date_of_birth">1992-11-08</field>
+            <field name="birthday">1992-11-08</field>
             <field name="gender">female</field>
             <field name="phone">+1 555-765-4321</field>
             <field name="email">carol.davis@example.com</field>

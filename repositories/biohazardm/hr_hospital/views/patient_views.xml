@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <tree string="Patients">
                 <field name="name"/>
-                <field name="date_of_birth"/>
+                <field name="birthday"/>
                 <field name="gender"/>
                 <field name="phone"/>
                 <field name="email"/>
@@ -24,18 +24,21 @@
                     <group>
                         <group>
                             <field name="name"/>
-                            <field name="date_of_birth"/>
+                            <field name="birthday"/>
+                            <field name="age" readonly="1"/>
                             <field name="gender"/>
                         </group>
                         <group>
                             <field name="phone"/>
                             <field name="email"/>
-                            <field name="doctor_id"/>
+                            <field name="personal_doctor_id"/>
                             <field name="active"/>
                         </group>
                     </group>
                     <group>
                         <field name="address"/>
+                        <field name="passport"/>
+                        <field name="emergency_contact"/>
                     </group>
                     <notebook>
                         <page string="Visits">
@@ -43,8 +46,7 @@
                                 <tree>
                                     <field name="name"/>
                                     <field name="doctor_id"/>
-                                    <field name="date"/>
-                                    <field name="disease_id"/>
+                                    <field name="planned_datetime"/>
                                     <field name="state"/>
                                 </tree>
                             </field>

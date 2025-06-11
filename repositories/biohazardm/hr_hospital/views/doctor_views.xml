@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <tree string="Doctors">
                 <field name="name"/>
-                <field name="specialization"/>
+                <field name="specialization_id"/>
                 <field name="phone"/>
                 <field name="email"/>
             </tree>
@@ -22,7 +22,7 @@
                     <group>
                         <group>
                             <field name="name"/>
-                            <field name="specialization"/>
+                            <field name="specialization_id"/>
                         </group>
                         <group>
                             <field name="phone"/>
@@ -35,7 +35,7 @@
                             <field name="patient_ids" readonly="1">
                                 <tree>
                                     <field name="name"/>
-                                    <field name="date_of_birth"/>
+                                    <field name="birthday"/>
                                     <field name="gender"/>
                                     <field name="phone"/>
                                 </tree>
@@ -46,8 +46,7 @@
                                 <tree>
                                     <field name="name"/>
                                     <field name="patient_id"/>
-                                    <field name="date"/>
-                                    <field name="disease_id"/>
+                                    <field name="planned_datetime"/>
                                     <field name="state"/>
                                 </tree>
                             </field>

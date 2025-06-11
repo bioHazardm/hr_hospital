@@ -4,13 +4,17 @@
         <field name="name">hr_hospital.visit.tree</field>
         <field name="model">hr_hospital.visit</field>
         <field name="arch" type="xml">
-            <tree string="Visits" decoration-info="state=='draft'" decoration-success="state=='done'" decoration-warning="state=='confirmed'" decoration-danger="state=='cancelled'">
+            <tree string="Visits" decoration-info="state=='draft'" decoration-success="state=='done'"
+                  decoration-warning="state=='confirmed'" decoration-danger="state=='cancelled'">
                 <field name="name"/>
                 <field name="patient_id"/>
                 <field name="doctor_id"/>
-                <field name="disease_id"/>
-                <field name="date"/>
+                <field name="planned_datetime"/>
                 <field name="state"/>
+                <button name="%(action_disease_report)d"
+                        string="Disease Report"
+                        type="action"
+                        icon="fa-bar-chart"/>
             </tree>
         </field>
     </record>
@@ -21,11 +25,10 @@
         <field name="arch" type="xml">
             <form string="Visit">
                 <header>
-                    <button name="action_confirm" string="Confirm" type="object" invisible="state != 'draft'" class="oe_highlight"/>
-                    <button name="action_done" string="Mark as Done" type="object" invisible="state != 'confirmed'" class="oe_highlight"/>
-                    <button name="action_cancel" string="Cancel" type="object" invisible="state not in ('draft', 'confirmed')"/>
-                    <button name="action_draft" string="Reset to Draft" type="object" invisible="state != 'cancelled'"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done"/>
+                    <button name="%(action_disease_report)d"
+                            string="Disease Report"
+                            type="action"
+                            class="btn-primary"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -37,10 +40,10 @@
                         <group>
                             <field name="patient_id"/>
                             <field name="doctor_id"/>
-                            <field name="disease_id"/>
                         </group>
                         <group>
-                            <field name="date"/>
+                            <field name="planned_datetime"/>
+                            <field name="actual_datetime"/>
                             <field name="active"/>
                         </group>
                     </group>
@@ -51,11 +54,21 @@
                         <page string="Prescription">
                             <field name="prescription"/>
                         </page>
+                        <page string="Diagnoses">
+                            <field name="diagnosis_ids">
+                                <tree editable="bottom">
+                                    <field name="disease_id"/>
+                                    <field name="description"/>
+                                    <field name="is_approved"/>
+                                </tree>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
         </field>
     </record>
+
 
     <record id="action_hr_hospital_visit" model="ir.actions.act_window">
         <field name="name">Visits</field>

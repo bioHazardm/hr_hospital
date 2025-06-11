@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_hospital_diagnosis_tree" model="ir.ui.view">
+        <field name="name">hr_hospital.diagnosis.tree</field>
+        <field name="model">hr_hospital.diagnosis</field>
+        <field name="arch" type="xml">
+            <tree string="Diagnoses">
+                <field name="visit_id"/>
+                <field name="disease_id"/>
+                <field name="is_approved"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_hospital_diagnosis_form" model="ir.ui.view">
+        <field name="name">hr_hospital.diagnosis.form</field>
+        <field name="model">hr_hospital.diagnosis</field>
+        <field name="arch" type="xml">
+            <form string="Diagnosis">
+                <sheet>
+                    <group>
+                        <field name="visit_id"/>
+                        <field name="disease_id"/>
+                        <field name="is_approved"/>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

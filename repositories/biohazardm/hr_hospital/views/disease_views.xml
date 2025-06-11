@@ -19,6 +19,7 @@
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="parent_id"/>
                         <field name="active"/>
                     </group>
                     <group string="Details">
@@ -26,23 +27,11 @@
                         <field name="symptoms"/>
                         <field name="treatment"/>
                     </group>
-                    <notebook>
-                        <page string="Visits">
-                            <field name="visit_ids" readonly="1">
-                                <tree>
-                                    <field name="name"/>
-                                    <field name="patient_id"/>
-                                    <field name="doctor_id"/>
-                                    <field name="date"/>
-                                    <field name="state"/>
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
         </field>
     </record>
+
 
     <record id="action_hr_hospital_disease" model="ir.actions.act_window">
         <field name="name">Diseases</field>

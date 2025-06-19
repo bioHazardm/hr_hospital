@@ -38,10 +38,4 @@
             </p>
         </field>
     </record>
-
-    <menuitem id="menu_hr_hospital_specialization"
-              name="Specializations"
-              parent="menu_hr_hospital_configuration"
-              action="action_hr_hospital_specialization"
-              sequence="20"/>
 </odoo>

@@ -19,8 +19,8 @@ class Disease(models.Model):
 
     # Hierarchical structure - allows grouping diseases
     # (e.g., Cardiovascular > Arrhythmia > Atrial Fibrillation)
-    parent_id = fields.Many2one('hr_hospital.disease', string='Parent Category')
-    child_ids = fields.One2many('hr_hospital.disease', 'parent_id', string='Subcategories')
+    parent_id = fields.Many2one(comodel_name='hr_hospital.disease', string='Parent Category')
+    child_ids = fields.One2many(comodel_name='hr_hospital.disease', inverse_name='parent_id', string='Subcategories')
     parent_path = fields.Char(index=True)  # Technical field for hierarchy
 
     # Technical fields for hierarchy

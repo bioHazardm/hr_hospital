@@ -19,10 +19,28 @@ class Diagnosis(models.Model):
     # The actual disease being diagnosed
     # Can't delete diseases that are used in diagnoses
     disease_id = fields.Many2one(
-        'hr_hospital.disease',
+        comodel_name='hr_hospital.disease',
         string='Disease',
         required=True,
         ondelete='restrict'  # Can't delete diseases used in diagnoses
+    )
+
+    # Related fields for reporting
+    visit_date = fields.Datetime(
+        string='Visit Date',
+        related='visit_id.planned_datetime',
+        store=True,
+        readonly=True,
+        help='Date of the visit for reporting purposes'
+    )
+
+    disease_type_id = fields.Many2one(
+        comodel_name='hr_hospital.disease',
+        string='Disease Type',
+        related='disease_id.parent_id',
+        store=True,
+        readonly=True,
+        help='Type/category of the disease for reporting purposes'
     )
 
     # Doctor's notes on treatment

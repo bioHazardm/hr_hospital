@@ -31,7 +31,7 @@
                         <group>
                             <field name="phone"/>
                             <field name="email"/>
-                            <field name="personal_doctor_id"/>
+                            <field name="doctor_id"/>
                             <field name="active"/>
                         </group>
                     </group>
@@ -51,9 +51,40 @@
                                 </tree>
                             </field>
                         </page>
+                        <page string="Diagnosis History">
+                            <field name="visit_ids" invisible="1"/>
+                            <field name="diagnosis_history" readonly="1">
+                                <tree>
+                                    <field name="visit_id"/>
+                                    <field name="disease_id"/>
+                                    <field name="description"/>
+                                    <field name="is_approved"/>
+                                </tree>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="view_hr_hospital_patient_search" model="ir.ui.view">
+        <field name="name">hr_hospital.patient.search</field>
+        <field name="model">hr_hospital.patient</field>
+        <field name="arch" type="xml">
+            <search string="Search Patients">
+                <field name="name" string="Name" filter_domain="[('name', 'ilike', self)]"/>
+                <field name="phone" string="Phone" filter_domain="[('phone', 'ilike', self)]"/>
+                <field name="email"/>
+                <field name="doctor_id"/>
+                <separator/>
+                <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Doctor" name="group_by_doctor" context="{'group_by': 'doctor_id'}"/>
+                    <filter string="Gender" name="group_by_gender" context="{'group_by': 'gender'}"/>
+                </group>
+            </search>
         </field>
     </record>
 
@@ -61,6 +92,7 @@
         <field name="name">Patients</field>
         <field name="res_model">hr_hospital.patient</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_hr_hospital_patient_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first patient!

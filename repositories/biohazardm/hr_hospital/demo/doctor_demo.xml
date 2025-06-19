@@ -36,5 +36,24 @@
             <field name="phone">+1 555-345-6789</field>
             <field name="email">michael.brown@hospital.example.com</field>
         </record>
+
+        <!-- Intern doctors -->
+        <record id="doctor_alex_wilson" model="hr_hospital.doctor">
+            <field name="name">Dr. Alex Wilson</field>
+            <field name="specialization_id" ref="specialization_cardiology"/>
+            <field name="is_intern" eval="True"/>
+            <field name="mentor_id" ref="doctor_john_smith"/>
+            <field name="phone">+1 555-456-7890</field>
+            <field name="email">alex.wilson@hospital.example.com</field>
+        </record>
+
+        <record id="doctor_emily_davis" model="hr_hospital.doctor">
+            <field name="name">Dr. Emily Davis</field>
+            <field name="specialization_id" ref="specialization_pediatrics"/>
+            <field name="is_intern" eval="True"/>
+            <field name="mentor_id" ref="doctor_sarah_johnson"/>
+            <field name="phone">+1 555-567-8901</field>
+            <field name="email">emily.davis@hospital.example.com</field>
+        </record>
     </data>
 </odoo>

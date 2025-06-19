@@ -42,5 +42,8 @@ class DiseaseReport(models.TransientModel):
             'res_model': 'hr_hospital.diagnosis',
             'view_mode': 'tree,form',
             'domain': [('id', 'in', self.diagnosis_ids.ids)],
-            'context': {'create': False},
+            'context': {
+                'create': False,
+                'group_by': ['disease_id'],
+            },
         }

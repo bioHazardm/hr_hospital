@@ -6,7 +6,9 @@
         <field name="arch" type="xml">
             <tree string="Diagnoses">
                 <field name="visit_id"/>
+                <field name="visit_date"/>
                 <field name="disease_id"/>
+                <field name="disease_type_id"/>
                 <field name="is_approved"/>
             </tree>
         </field>
@@ -19,15 +21,59 @@
             <form string="Diagnosis">
                 <sheet>
                     <group>
-                        <field name="visit_id"/>
-                        <field name="disease_id"/>
-                        <field name="is_approved"/>
+                        <group>
+                            <field name="visit_id"/>
+                            <field name="visit_date" readonly="1"/>
+                            <field name="is_approved"/>
+                        </group>
+                        <group>
+                            <field name="disease_id"/>
+                            <field name="disease_type_id" readonly="1"/>
+                        </group>
                     </group>
                     <group>
                         <field name="description"/>
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <!-- Pivot View for Diagnoses -->
+    <record id="view_hr_hospital_diagnosis_pivot" model="ir.ui.view">
+        <field name="name">hr_hospital.diagnosis.pivot</field>
+        <field name="model">hr_hospital.diagnosis</field>
+        <field name="arch" type="xml">
+            <pivot string="Disease Analysis">
+                <field name="disease_id" type="row"/>
+                <field name="disease_type_id" type="row"/>
+                <field name="visit_date" type="col" interval="month"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View for Diagnoses -->
+    <record id="view_hr_hospital_diagnosis_graph" model="ir.ui.view">
+        <field name="name">hr_hospital.diagnosis.graph</field>
+        <field name="model">hr_hospital.diagnosis</field>
+        <field name="arch" type="xml">
+            <graph string="Disease Analysis" type="bar">
+                <field name="disease_type_id"/>
+                <field name="visit_date" interval="month"/>
+                <field name="id" type="measure" string="Count"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Action for Diagnoses -->
+    <record id="action_hr_hospital_diagnosis" model="ir.actions.act_window">
+        <field name="name">Diagnoses</field>
+        <field name="res_model">hr_hospital.diagnosis</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new diagnosis
+            </p>
         </field>
     </record>
 </odoo>

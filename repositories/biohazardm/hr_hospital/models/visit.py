@@ -13,8 +13,8 @@ class Visit(models.Model):
                       default=lambda self: _('New'))  # will be replaced by sequence
 
     # The main fields we need for any visit
-    patient_id = fields.Many2one('hr_hospital.patient', string='Patient', required=True)
-    doctor_id = fields.Many2one('hr_hospital.doctor', string='Doctor', required=True)
+    patient_id = fields.Many2one(comodel_name='hr_hospital.patient', string='Patient', required=True)
+    doctor_id = fields.Many2one(comodel_name='hr_hospital.doctor', string='Doctor', required=True)
 
     # When the visit is scheduled vs when it actually happened
     planned_datetime = fields.Datetime(string='Planned Date & Time', required=True)
@@ -31,7 +31,7 @@ class Visit(models.Model):
     active = fields.Boolean(default=True)
 
     # Related diagnoses - one visit can have multiple diagnoses
-    diagnosis_ids = fields.One2many('hr_hospital.diagnosis', 'visit_id', string='Diagnoses')
+    diagnosis_ids = fields.One2many(comodel_name='hr_hospital.diagnosis', inverse_name='visit_id', string='Diagnoses')
 
     # Free text fields for doctor notes
     description = fields.Text(string='Description')

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="visit_demo_1" model="hr_hospital.visit">
+            <field name="name">VISIT/2023/0001</field>
+            <field name="patient_id" ref="patient_alice_williams"/>
+            <field name="doctor_id" ref="doctor_john_smith"/>
+            <field name="planned_datetime" eval="(datetime.now() - relativedelta(days=5)).strftime('%Y-%m-%d 10:00:00')"/>
+            <field name="actual_datetime" eval="(datetime.now() - relativedelta(days=5)).strftime('%Y-%m-%d 10:15:00')"/>
+            <field name="state">done</field>
+            <field name="description">Regular check-up. Patient reports feeling well.</field>
+            <field name="prescription">No medication needed at this time.</field>
+        </record>
+
+        <record id="visit_demo_2" model="hr_hospital.visit">
+            <field name="name">VISIT/2023/0002</field>
+            <field name="patient_id" ref="patient_bob_johnson"/>
+            <field name="doctor_id" ref="doctor_sarah_johnson"/>
+            <field name="planned_datetime" eval="(datetime.now() - relativedelta(days=2)).strftime('%Y-%m-%d 14:30:00')"/>
+            <field name="actual_datetime" eval="(datetime.now() - relativedelta(days=2)).strftime('%Y-%m-%d 14:45:00')"/>
+            <field name="state">done</field>
+            <field name="description">Patient complains of headaches and dizziness.</field>
+            <field name="prescription">Prescribed pain relievers and rest.</field>
+        </record>
+
+        <record id="visit_demo_3" model="hr_hospital.visit">
+            <field name="name">VISIT/2023/0003</field>
+            <field name="patient_id" ref="patient_carol_davis"/>
+            <field name="doctor_id" ref="doctor_michael_brown"/>
+            <field name="planned_datetime" eval="datetime.now().strftime('%Y-%m-%d 09:00:00')"/>
+            <field name="state">planned</field>
+            <field name="description">Annual check-up.</field>
+        </record>
+
+        <record id="visit_demo_4" model="hr_hospital.visit">
+            <field name="name">VISIT/2023/0004</field>
+            <field name="patient_id" ref="patient_alice_williams"/>
+            <field name="doctor_id" ref="doctor_john_smith"/>
+            <field name="planned_datetime" eval="(datetime.now() + relativedelta(days=3)).strftime('%Y-%m-%d 11:30:00')"/>
+            <field name="state">planned</field>
+            <field name="description">Follow-up appointment for previous treatment.</field>
+        </record>
+
+        <record id="diagnosis_demo_1" model="hr_hospital.diagnosis">
+            <field name="visit_id" ref="visit_demo_1"/>
+            <field name="disease_id" ref="disease_flu"/>
+            <field name="description">Mild symptoms, recommended rest and fluids.</field>
+            <field name="is_approved" eval="True"/>
+        </record>
+
+        <record id="diagnosis_demo_2" model="hr_hospital.diagnosis">
+            <field name="visit_id" ref="visit_demo_2"/>
+            <field name="disease_id" ref="disease_hypertension"/>
+            <field name="description">Elevated blood pressure, prescribed medication and lifestyle changes.</field>
+            <field name="is_approved" eval="True"/>
+        </record>
+
+        <record id="visit_demo_5" model="hr_hospital.visit">
+            <field name="name">VISIT/2023/0005</field>
+            <field name="patient_id" ref="patient_bob_johnson"/>
+            <field name="doctor_id" ref="doctor_john_smith"/>
+            <field name="planned_datetime" eval="(datetime.now() - relativedelta(days=10)).strftime('%Y-%m-%d 09:30:00')"/>
+            <field name="actual_datetime" eval="(datetime.now() - relativedelta(days=10)).strftime('%Y-%m-%d 09:45:00')"/>
+            <field name="state">done</field>
+            <field name="description">Patient reports fever, cough, and fatigue. COVID test performed.</field>
+            <field name="prescription">Prescribed rest, fluids, and isolation for 14 days.</field>
+        </record>
+
+        <record id="diagnosis_demo_3" model="hr_hospital.diagnosis">
+            <field name="visit_id" ref="visit_demo_5"/>
+            <field name="disease_id" ref="disease_covid"/>
+            <field name="description">Positive COVID-19 test. Mild symptoms, no hospitalization required.</field>
+            <field name="is_approved" eval="True"/>
+        </record>
+
+        <record id="visit_demo_6" model="hr_hospital.visit">
+            <field name="name">VISIT/2023/0006</field>
+            <field name="patient_id" ref="patient_carol_davis"/>
+            <field name="doctor_id" ref="doctor_sarah_johnson"/>
+            <field name="planned_datetime" eval="(datetime.now() + relativedelta(days=5)).strftime('%Y-%m-%d 14:00:00')"/>
+            <field name="state">planned</field>
+            <field name="description">Routine diabetes check-up.</field>
+        </record>
+
+        <record id="visit_demo_7" model="hr_hospital.visit">
+            <field name="name">VISIT/2023/0007</field>
+            <field name="patient_id" ref="patient_alice_williams"/>
+            <field name="doctor_id" ref="doctor_michael_brown"/>
+            <field name="planned_datetime" eval="(datetime.now() - relativedelta(days=15)).strftime('%Y-%m-%d 11:00:00')"/>
+            <field name="actual_datetime" eval="(datetime.now() - relativedelta(days=15)).strftime('%Y-%m-%d 11:15:00')"/>
+            <field name="state">done</field>
+            <field name="description">Patient reports frequent headaches and dizziness.</field>
+            <field name="prescription">Prescribed neurological examination and MRI scan.</field>
+        </record>
+
+        <record id="visit_demo_8" model="hr_hospital.visit">
+            <field name="name">VISIT/2023/0008</field>
+            <field name="patient_id" ref="patient_bob_johnson"/>
+            <field name="doctor_id" ref="doctor_michael_brown"/>
+            <field name="planned_datetime" eval="(datetime.now() - relativedelta(days=1)).strftime('%Y-%m-%d 16:30:00')"/>
+            <field name="state">cancelled</field>
+            <field name="description">Consultation for persistent back pain.</field>
+        </record>
+        <!-- Additional diagnosis demo records -->
+        <record id="diagnosis_demo_4" model="hr_hospital.diagnosis">
+            <field name="visit_id" ref="visit_demo_7"/>
+            <field name="disease_id" ref="disease_diabetes"/>
+            <field name="description">Patient shows signs of diabetes. Recommended blood sugar monitoring and dietary changes.</field>
+            <field name="is_approved" eval="True"/>
+        </record>
+
+        <record id="diagnosis_demo_5" model="hr_hospital.diagnosis">
+            <field name="visit_id" ref="visit_demo_4"/>
+            <field name="disease_id" ref="disease_flu"/>
+            <field name="description">Follow-up for influenza. Patient showing improvement.</field>
+            <field name="is_approved" eval="True"/>
+        </record>
+
+        <record id="diagnosis_demo_6" model="hr_hospital.diagnosis">
+            <field name="visit_id" ref="visit_demo_3"/>
+            <field name="disease_id" ref="disease_hypertension"/>
+            <field name="description">Routine check for hypertension. Blood pressure slightly elevated.</field>
+            <field name="is_approved" eval="False"/>
+        </record>
+    </data>
+</odoo>

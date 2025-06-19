@@ -15,6 +15,9 @@ class Doctor(models.Model):
     mentor_id = fields.Many2one(comodel_name='hr_hospital.doctor', string='Mentor',
                                domain="[('is_intern', '=', False)]")
 
+    # Computed field to get interns (doctors who have this doctor as mentor)
+    intern_ids = fields.One2many(comodel_name='hr_hospital.doctor', inverse_name='mentor_id', string='Interns')
+
     # Contact info - might move this to person model later if needed for patients too
     email = fields.Char(string='Email')
     active = fields.Boolean(default=True)  # for archiving

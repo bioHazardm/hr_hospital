@@ -20,14 +20,14 @@ class PatientDoctorReassign(models.TransientModel):
 
     def action_reassign_doctor(self):
         """Assign the selected doctor to all selected patients.
-        Updates the personal_doctor_id field on all patients."""
+        Updates the doctor_id field on all patients."""
         # Get the patients selected in the UI
         selected_patients = self._get_selected_patients()
 
         if selected_patients:
             # Do the actual reassignment
             selected_patients.write({
-                'personal_doctor_id': self.doctor_id.id
+                'doctor_id': self.doctor_id.id
             })
 
             # Could add a nice message here in the future

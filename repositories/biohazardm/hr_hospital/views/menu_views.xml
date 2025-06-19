@@ -33,4 +33,16 @@
               parent="menu_hr_hospital_root"
               action="action_hr_hospital_visit"
               sequence="30"/>
+
+    <menuitem id="menu_hr_hospital_diagnosis"
+              name="Diagnoses"
+              parent="menu_hr_hospital_root"
+              action="action_hr_hospital_diagnosis"
+              sequence="30"/>
+
+    <menuitem id="menu_hr_hospital_specialization"
+              name="Specializations"
+              parent="menu_hr_hospital_configuration"
+              action="action_hr_hospital_specialization"
+              sequence="20"/>
 </odoo>

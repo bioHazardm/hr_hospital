@@ -25,6 +25,7 @@
         <field name="arch" type="xml">
             <form string="Visit">
                 <header>
+                    <field name="state" widget="statusbar" statusbar_visible="planned,done,cancelled"/>
                     <button name="%(action_disease_report)d"
                             string="Disease Report"
                             type="action"
@@ -40,6 +41,7 @@
                         <group>
                             <field name="patient_id"/>
                             <field name="doctor_id"/>
+                            <field name="state"/>
                         </group>
                         <group>
                             <field name="planned_datetime"/>
@@ -70,10 +72,57 @@
     </record>
 
 
+    <record id="view_hr_hospital_visit_calendar" model="ir.ui.view">
+        <field name="name">hr_hospital.visit.calendar</field>
+        <field name="model">hr_hospital.visit</field>
+        <field name="arch" type="xml">
+            <calendar string="Visit Calendar" date_start="planned_datetime" color="state">
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_hr_hospital_visit_search" model="ir.ui.view">
+        <field name="name">hr_hospital.visit.search</field>
+        <field name="model">hr_hospital.visit</field>
+        <field name="arch" type="xml">
+            <search string="Search Visits">
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="planned_datetime"/>
+                <filter string="Planned Visits" name="planned" domain="[('state', '=', 'planned')]"/>
+                <filter string="Completed Visits" name="done" domain="[('state', '=', 'done')]"/>
+                <filter string="Cancelled Visits" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="group_by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Doctor" name="group_by_doctor" context="{'group_by': 'doctor_id'}"/>
+                    <filter string="Patient" name="group_by_patient" context="{'group_by': 'patient_id'}"/>
+                    <filter string="Month" name="group_by_month" context="{'group_by': 'planned_datetime:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_hr_hospital_visit_pivot" model="ir.ui.view">
+        <field name="name">hr_hospital.visit.pivot</field>
+        <field name="model">hr_hospital.visit</field>
+        <field name="arch" type="xml">
+            <pivot string="Visits Analysis">
+                <field name="doctor_id" type="row"/>
+                <field name="state" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
     <record id="action_hr_hospital_visit" model="ir.actions.act_window">
         <field name="name">Visits</field>
         <field name="res_model">hr_hospital.visit</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,calendar,pivot</field>
+        <field name="search_view_id" ref="view_hr_hospital_visit_search"/>
+        <field name="context">{'search_default_group_by_state': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first visit!

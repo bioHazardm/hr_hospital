@@ -101,7 +101,7 @@
             <field name="state">cancelled</field>
             <field name="description">Consultation for persistent back pain.</field>
         </record>
-        <!-- Additional diagnosis demo records -->
+
         <record id="diagnosis_demo_4" model="hr_hospital.diagnosis">
             <field name="visit_id" ref="visit_demo_7"/>
             <field name="disease_id" ref="disease_diabetes"/>

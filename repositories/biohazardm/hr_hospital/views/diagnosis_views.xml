@@ -39,7 +39,6 @@
         </field>
     </record>
 
-    <!-- Pivot View for Diagnoses -->
     <record id="view_hr_hospital_diagnosis_pivot" model="ir.ui.view">
         <field name="name">hr_hospital.diagnosis.pivot</field>
         <field name="model">hr_hospital.diagnosis</field>
@@ -52,7 +51,6 @@
         </field>
     </record>
 
-    <!-- Graph View for Diagnoses -->
     <record id="view_hr_hospital_diagnosis_graph" model="ir.ui.view">
         <field name="name">hr_hospital.diagnosis.graph</field>
         <field name="model">hr_hospital.diagnosis</field>
@@ -65,7 +63,6 @@
         </field>
     </record>
 
-    <!-- Action for Diagnoses -->
     <record id="action_hr_hospital_diagnosis" model="ir.actions.act_window">
         <field name="name">Diagnoses</field>
         <field name="res_model">hr_hospital.diagnosis</field>

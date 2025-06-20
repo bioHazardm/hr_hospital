@@ -2,30 +2,23 @@ from odoo import models, fields, _
 
 
 class Disease(models.Model):
-    """Medical conditions that can be diagnosed.
-
-    Organized in a hierarchical structure so we can group related diseases.
-    For example: Respiratory Diseases > Pneumonia > Bacterial Pneumonia"""
     _name = 'hr_hospital.disease'
     _description = 'Medical Condition'
-    _order = 'name'  # Alphabetical makes it easier to find
+    _order = 'name'
 
     # Basic info
-    name = fields.Char('Name', required=True)  # Simplified
-    description = fields.Text('Description')  # General info about the disease
-    symptoms = fields.Text('Common Symptoms')  # Changed label slightly
-    treatment = fields.Text('Standard Treatment')  # Changed label slightly
-    active = fields.Boolean(default=True)  # For archiving
+    name = fields.Char('Name', required=True)
+    description = fields.Text('Description')
+    symptoms = fields.Text('Common Symptoms')
+    treatment = fields.Text('Standard Treatment')
+    active = fields.Boolean(default=True)
 
-    # Hierarchical structure - allows grouping diseases
-    # (e.g., Cardiovascular > Arrhythmia > Atrial Fibrillation)
     parent_id = fields.Many2one(comodel_name='hr_hospital.disease', string='Parent Category')
     child_ids = fields.One2many(comodel_name='hr_hospital.disease', inverse_name='parent_id', string='Subcategories')
-    parent_path = fields.Char(index=True)  # Technical field for hierarchy
+    parent_path = fields.Char(index=True)
 
-    # Technical fields for hierarchy
     _parent_name = 'parent_id'
-    _parent_store = True  # Enables efficient hierarchical queries
+    _parent_store = True
 
     _sql_constraints = [
         ('name_uniq', 'unique(name)', 

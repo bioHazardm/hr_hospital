@@ -37,7 +37,6 @@
             <field name="email">michael.brown@hospital.example.com</field>
         </record>
 
-        <!-- Intern doctors -->
         <record id="doctor_alex_wilson" model="hr_hospital.doctor">
             <field name="name">Dr. Alex Wilson</field>
             <field name="specialization_id" ref="specialization_cardiology"/>

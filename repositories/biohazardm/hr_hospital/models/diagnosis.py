@@ -3,29 +3,23 @@ from odoo.exceptions import ValidationError
 
 
 class Diagnosis(models.Model):
-    """Links diseases to patient visits with treatment details.
-    Also handles the approval workflow for diagnoses made by interns."""
     _name = 'hr_hospital.diagnosis'
-    _description = 'Patient Diagnosis'  # More descriptive
+    _description = 'Patient Diagnosis'
 
-    # Link to the visit - if visit is deleted, delete the diagnosis too
     visit_id = fields.Many2one(
         comodel_name='hr_hospital.visit',
         string='Visit',
         required=True,
-        ondelete='cascade'  # If visit is deleted, diagnosis goes too
+        ondelete='cascade'
     )
 
-    # The actual disease being diagnosed
-    # Can't delete diseases that are used in diagnoses
     disease_id = fields.Many2one(
         comodel_name='hr_hospital.disease',
         string='Disease',
         required=True,
-        ondelete='restrict'  # Can't delete diseases used in diagnoses
+        ondelete='restrict'
     )
 
-    # Related fields for reporting
     visit_date = fields.Datetime(
         string='Visit Date',
         related='visit_id.planned_datetime',
@@ -43,10 +37,8 @@ class Diagnosis(models.Model):
         help='Type/category of the disease for reporting purposes'
     )
 
-    # Doctor's notes on treatment
     description = fields.Text('Treatment Notes')
 
-    # For intern approval workflow
     is_approved = fields.Boolean(
         'Mentor Approval',
         help='Check this when a senior doctor has reviewed and approved an intern\'s diagnosis'
@@ -54,8 +46,6 @@ class Diagnosis(models.Model):
 
     @api.constrains('is_approved')
     def _check_intern_approval(self):
-        """Make sure interns have mentors to approve their work.
-        Hospital policy requires all intern diagnoses to be reviewed."""
         for diagnosis in self:
             doctor = diagnosis.visit_id.doctor_id
             if doctor.is_intern and not doctor.mentor_id:

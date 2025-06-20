@@ -35,13 +35,11 @@
                         </group>
                     </group>
 
-                    <!-- Show mentor information if this doctor is an intern -->
                     <div invisible="[('mentor_id', '=', False)]">
                         <h3>Mentor Information</h3>
                         <field name="mentor_id" readonly="1" options="{'no_open': False}"/>
                     </div>
 
-                    <!-- Show interns if this doctor has any -->
                     <div invisible="[('intern_ids', '=', [])]">
                         <h3>Interns</h3>
                         <field name="intern_ids" mode="kanban" readonly="1">
@@ -106,7 +104,6 @@
         </field>
     </record>
 
-    <!-- Search View -->
     <record id="view_hr_hospital_doctor_search" model="ir.ui.view">
         <field name="name">hr_hospital.doctor.search</field>
         <field name="model">hr_hospital.doctor</field>
@@ -116,10 +113,8 @@
                 <field name="specialization_id"/>
                 <field name="email"/>
                 <field name="phone"/>
-                <!-- Filters for mentors and interns -->
                 <filter string="Mentors" name="mentors" domain="[('intern_ids', '!=', False)]"/>
                 <filter string="Interns" name="interns" domain="[('is_intern', '=', True)]"/>
-                <!-- Group by -->
                 <group expand="0" string="Group By">
                     <filter string="Specialization" name="group_by_specialization"
                             context="{'group_by': 'specialization_id'}"/>
@@ -129,7 +124,6 @@
         </field>
     </record>
 
-    <!-- Action for creating a visit from doctor kanban -->
     <record id="action_create_visit_from_doctor" model="ir.actions.act_window">
         <field name="name">Schedule Visit</field>
         <field name="res_model">hr_hospital.visit</field>
@@ -138,7 +132,6 @@
         <field name="context">{'default_state': 'planned'}</field>
     </record>
 
-    <!-- Kanban View -->
     <record id="view_hr_hospital_doctor_kanban" model="ir.ui.view">
         <field name="name">hr_hospital.doctor.kanban</field>
         <field name="model">hr_hospital.doctor</field>
@@ -174,7 +167,6 @@
                                     </li>
                                 </ul>
 
-                                <!-- Quick create visit button -->
                                 <div class="o_kanban_button">
                                     <button name="%(hr_hospital.action_create_visit_from_doctor)d"
                                             type="action"
@@ -184,7 +176,6 @@
                                     </button>
                                 </div>
 
-                                <!-- Show interns if any -->
                                 <div t-if="record.intern_ids.raw_value.length > 0" class="mt-2">
                                     <strong>Interns:</strong>
                                     <ul>
